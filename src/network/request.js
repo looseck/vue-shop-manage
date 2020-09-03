@@ -9,6 +9,8 @@ export function request(config) {
   // 添加请求拦截器
   instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
+    // 需要授权的 API ，必须在请求头中使用 `Authorization` 字段提供 `token` 令牌
+    config.headers.Authorization = window.sessionStorage.getItem('token')
     return config;
   }, function (error) {
     // 对请求错误做些什么

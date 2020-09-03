@@ -12,7 +12,6 @@
         class="box_body"
         :model="loginForm"
         :rules="rules"
-        status-icon
       >
         <!-- 用户名 -->
         <el-form-item prop="username">
@@ -81,7 +80,7 @@ export default {
             url: "login",
             data: this.loginForm,
           });
-          console.log(res);
+          // console.log(res);
           if (res.meta.status === 200) {
             this.$message.success(res.meta.msg);
             // 将登录成功之后的 token 保存到浏览器的 sessionStorage 中
