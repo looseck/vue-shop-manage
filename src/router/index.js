@@ -3,8 +3,17 @@ import VueRouter from 'vue-router'
 import Home from '@/components/Home.vue'
 import Welcome from '@/components/pages/Welcome.vue'
 import Users from '@/components/pages/Users.vue'
+import Rights from '@/components/pages/Rights.vue'
+import Roles from '@/components/pages/Roles.vue'
+import Test from '@/components/pages/test.vue'
 
 Vue.use(VueRouter)
+
+// 修改首页路由重复点击报错
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 const routes = [
   {
@@ -24,16 +33,32 @@ const routes = [
     name: 'Home',
     component: Home,
     redirect: '/welcome',
+    meta: [],
     children: [
       {
         path: '/welcome',
         name: 'Welcome',
         component: Welcome,
+        meta: [],
       },
       {
         path: '/users',
         name: 'Users',
         component: Users,
+        meta: ['用户管理', '用户列表'],
+      },
+      {
+        path: '/rights',
+        component: Rights,
+        meta: ['权限管理', '权限列表'],
+      }, {
+        path: '/roles',
+        component: Roles,
+        meta: ['权限管理', '角色列表'],
+      }, {
+        path: '/test',
+        component: Test,
+        meta: ['测试'],
       }
     ]
   },

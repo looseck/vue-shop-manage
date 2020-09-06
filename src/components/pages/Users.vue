@@ -10,7 +10,7 @@
     </div>
 
     <!-- 用户列表 -->
-    <el-table :data="usersData" style="width: 100%" border>
+    <el-table :data="usersData" style="width: 100%" border :header-cell-style="{'color':'#383838'}">
       <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="username" label="姓名" width="200"></el-table-column>
       <el-table-column prop="email" label="邮箱" width="200"></el-table-column>
@@ -32,7 +32,7 @@
         <template v-slot="scope">
           <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope)">编辑</el-button>
           <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope)">删除</el-button>
-          <el-button type="text" icon="el-icon-setting" class="gray">分配</el-button>
+          <el-button type="text" icon="el-icon-setting" class="gray" @click="assginRole(scope)">分配角色</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -90,8 +90,45 @@
         <el-button type="primary" @click="submitEdit">确 定</el-button>
       </div>
     </el-dialog>
-  </div>
-</template>
+
+    <!-- 分配角色弹出框 -->
+    <el-dialog title="分配角色" :visible.sync="RoleDialogVisible" width="40%" @close="roleDialogClosed">
+      <el-row class="vcenter">
+        <el-col :span="3">
+          <span>当前的用户:</span>
+        </el-col>
+        <el-col :span="6">
+          <el-input disabled v-model="setRoleData.username"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="vcenter mgtop">
+        <el-col :span="3">
+          <span>当前的角色:</span>
+        </el-col>
+        <el-col :span="6">
+          <el-input disabled v-model="setRoleData.role_name"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="vcenter mgtop">
+        <el-col :span="3">
+          <span>分配新角色:</span>
+        </el-col>
+        <el-col :span="6">
+          <el-select v-model="selectedRole" placeholder="请选择">
+            <el-option
+              v-for="item in roleList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-col>
+      </el-row>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="RoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitAssginRole">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -163,6 +200,16 @@ export default {
           },
         ],
         mobile: [{ validator: validateMobile, trigger: "blur" }],
+      },
+      // 分配角色弹框的显示隐藏
+      RoleDialogVisible: false,
+      // 角色id，绑定每个选择
+      selectedRole: "",
+      // 角色列表数据
+      roleList: [],
+      setRoleData: {
+        username: "",
+        role_name: "",
       },
     };
   },
@@ -299,6 +346,41 @@ export default {
       this.addVisible = false;
       this.$refs["editFormRef"].resetFields();
     },
+    // 弹出 分配角色框
+    async assginRole(scope) {
+      // 获取用户id
+      this.Id = scope.row.id;
+      this.setRoleData.username = scope.row.username;
+      this.setRoleData.role_name = scope.row.role_name;
+      // 获取角色列表
+      const res = await request("roles");
+      if (res.meta.status !== 200)
+        return this.$message.error("获取角色列表失败");
+      this.roleList = res.data;
+      this.RoleDialogVisible = true;
+    },
+    // 关闭 分配角色框
+    roleDialogClosed() {
+      this.value = "";
+    },
+    // 分配 用户的角色
+    async submitAssginRole() {
+      if (!this.selectedRole) {
+        return this.$message.error("请选择角色");
+      }
+      const res = await request({
+        method: "put",
+        url: "users/" + this.Id + "/role",
+        data: {
+          rid: this.selectedRole,
+        },
+      });
+      if (res.meta.status !== 200)
+        return this.$message.error("获取角色列表失败");
+      this.$message.success(res.meta.msg);
+      this.getUserList();
+      this.RoleDialogVisible = false;
+    },
   },
 };
 </script>
@@ -326,5 +408,12 @@ export default {
 }
 .gray {
   color: gray;
+}
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+.mgtop {
+  margin-top: 20px;
 }
 </style>
