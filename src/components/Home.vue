@@ -51,23 +51,21 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden;
 }
 .main-box {
   position: absolute;
   display: block;
+  box-sizing: border-box;
   left: 200px;
   right: 0;
   top: 60px;
   bottom: 0;
-  height: 100%;
   padding: 10px 20px;
   background-color: #eee;
   transition: left 0.3s ease-in-out;
+  overflow-y: scroll;
 }
 .main {
-  height: 100%;
-  overflow-y: scroll;
   box-sizing: border-box;
 }
 .content-collapse {

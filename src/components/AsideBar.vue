@@ -55,11 +55,11 @@ export default {
       items: [],
       // 图标数据
       icons: {
-        "125": "el-icon-s-custom",
-        "103": "el-icon-view",
-        "101": "el-icon-goods",
-        "102": "el-icon-document",
-        "145": "el-icon-pie-chart",
+        125: "el-icon-s-custom",
+        103: "el-icon-view",
+        101: "el-icon-goods",
+        102: "el-icon-document",
+        145: "el-icon-pie-chart",
       },
     };
   },
@@ -90,7 +90,6 @@ export default {
   position: absolute;
   top: 60px;
   bottom: 0;
-  height: 100%;
 }
 .el-menu-aside:not(.el-menu--collapse) {
   width: 200px;
