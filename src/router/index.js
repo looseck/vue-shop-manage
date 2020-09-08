@@ -7,6 +7,7 @@ import Rights from '@/components/pages/Rights.vue'
 import Roles from '@/components/pages/Roles.vue'
 import Test from '@/components/pages/test.vue'
 import Category from '@/components/pages/Category.vue'
+import Params from '@/components/pages/Params.vue'
 
 Vue.use(VueRouter)
 
@@ -41,14 +42,12 @@ const routes = [
         name: 'Welcome',
         component: Welcome,
         meta: [],
-      },
-      {
+      }, {
         path: '/users',
         name: 'Users',
         component: Users,
         meta: ['用户管理', '用户列表'],
-      },
-      {
+      }, {
         path: '/rights',
         component: Rights,
         meta: ['权限管理', '权限列表'],
@@ -60,6 +59,10 @@ const routes = [
         path: '/categories',
         component: Category,
         meta: ['商品管理', '商品分类'],
+      }, {
+        path: '/params',
+        component: Params,
+        meta: ['商品管理', '分类参数'],
       }, {
         path: '/test',
         component: Test,
