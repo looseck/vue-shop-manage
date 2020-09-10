@@ -350,6 +350,7 @@ export default {
     async showEditAttrDialog(row) {
       const res = await request({
         url: "categories/" + this.id + "/attributes/" + row.attr_id,
+        attr_sel: this.activeName,
       });
       if (res.meta.status !== 200) return this.$message.error("获取数据失败");
       this.editAttrForm = res.data;

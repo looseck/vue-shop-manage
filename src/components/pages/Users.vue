@@ -16,7 +16,9 @@
       <el-table-column prop="email" label="邮箱" width="200"></el-table-column>
       <el-table-column prop="mobile" label="电话" width="200"></el-table-column>
       <el-table-column prop="role_name" label="角色" width="200"></el-table-column>
-      <el-table-column prop="create_time" label="注册时间" width="200"></el-table-column>
+      <el-table-column prop="create_time" label="注册时间" width="200">
+        <template v-slot="scope">{{scope.row.create_time | dateFormat}}</template>
+      </el-table-column>
       <!-- 作用域插槽 更改用户状态-->
       <el-table-column label="状态" width="200" align="center">
         <template v-slot="state">

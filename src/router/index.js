@@ -8,6 +8,8 @@ import Roles from '@/components/pages/Roles.vue'
 import Test from '@/components/pages/test.vue'
 import Category from '@/components/pages/Category.vue'
 import Params from '@/components/pages/Params.vue'
+import GoodsList from '@/components/pages/GoodsList.vue'
+import AddGoods from '@/components/pages/AddGoods.vue'
 
 Vue.use(VueRouter)
 
@@ -21,16 +23,14 @@ const routes = [
   {
     path: '/',
     redirect: '/login'
-  },
-  {
+  }, {
     path: '/login',
     name: 'Login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../components/Login.vue')
-  },
-  {
+  }, {
     path: '/home',
     name: 'Home',
     component: Home,
@@ -63,6 +63,14 @@ const routes = [
         path: '/params',
         component: Params,
         meta: ['商品管理', '分类参数'],
+      }, {
+        path: '/goods',
+        component: GoodsList,
+        meta: ['商品管理', '商品列表'],
+      }, {
+        path: '/add',
+        component: AddGoods,
+        meta: ['添加商品'],
       }, {
         path: '/test',
         component: Test,

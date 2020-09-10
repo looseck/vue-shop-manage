@@ -33,6 +33,10 @@
           </template>
         </el-submenu>
       </template>
+      <el-menu-item index="add">
+        <i class="el-icon-shopping-cart-full"></i>
+        <span slot="title">添加商品</span>
+      </el-menu-item>
       <el-menu-item index="test">
         <i class="el-icon-loading"></i>
         <span slot="title">Test</span>
