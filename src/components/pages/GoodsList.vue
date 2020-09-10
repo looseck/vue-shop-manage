@@ -99,6 +99,7 @@ export default {
     },
     // 根据关键字查询商品
     searchGoods() {
+      this.querys.pagenum = 1;
       this.getGoodsList();
     },
     // 点击显示 添加商品对话框

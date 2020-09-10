@@ -10,6 +10,7 @@ import Category from '@/components/pages/Category.vue'
 import Params from '@/components/pages/Params.vue'
 import GoodsList from '@/components/pages/GoodsList.vue'
 import AddGoods from '@/components/pages/AddGoods.vue'
+import Orders from '@/components/pages/Orders.vue'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,10 @@ const routes = [
         path: '/add',
         component: AddGoods,
         meta: ['添加商品'],
+      }, {
+        path: '/orders',
+        component: Orders,
+        meta: ['订单管理', '订单列表'],
       }, {
         path: '/test',
         component: Test,

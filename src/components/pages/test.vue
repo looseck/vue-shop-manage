@@ -59,20 +59,6 @@ export default {
           address: "上海市普陀区真北路",
           shop: "王小虎夫妻店",
           shopId: "10333",
-          children: [
-            {
-              id: "100",
-              path: "good",
-            },
-            {
-              id: "101",
-              path: "good",
-            },
-            {
-              id: "102",
-              path: "good",
-            },
-          ],
         },
         {
           id: "12987123",
@@ -91,20 +77,6 @@ export default {
           address: "上海市普陀区真北路",
           shop: "王小虎夫妻店",
           shopId: "10333",
-          children: [
-            {
-              id: "300",
-              path: "good",
-            },
-            {
-              id: "301",
-              path: "good",
-            },
-            {
-              id: "302",
-              path: "good",
-            },
-          ],
         },
         {
           id: "12987126",
@@ -114,20 +86,6 @@ export default {
           address: "上海市普陀区真北路",
           shop: "王小虎夫妻店",
           shopId: "10333",
-          children: [
-            {
-              id: "400",
-              path: "good",
-            },
-            {
-              id: "401",
-              path: "good",
-            },
-            {
-              id: "402",
-              path: "good",
-            },
-          ],
         },
       ],
       // 获取row的key值
